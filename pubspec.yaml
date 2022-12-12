@@ -43,6 +43,10 @@ dependencies:
   agora_rtc_engine: ^6.0.0
   # agora_rtc_engine: ^3.3.3
   permission_handler: ^10.2.0
+  cloud_firestore: ^4.2.0
+  firebase_auth: ^4.2.0
+  agora_rtm: ^1.5.0
+  firebase_core: ^2.4.0
 
 dev_dependencies:
   flutter_test:

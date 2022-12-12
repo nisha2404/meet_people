@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "340179053649",
+    "project_id": "meet-people-5ed5f",
+    "storage_bucket": "meet-people-5ed5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340179053649:android:48f63671672571e3339c70",
+        "android_client_info": {
+          "package_name": "com.example.meet_people"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340179053649-vo1kmsdjb71v3l5kgob6oube89n7v7j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ly19NYtB2qeTma94MYHF1QDjuBgYuIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340179053649-vo1kmsdjb71v3l5kgob6oube89n7v7j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

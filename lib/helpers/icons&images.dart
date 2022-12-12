@@ -13,6 +13,7 @@ class AppImages {
   static const profilebg = "assets/images/profilebgdesign.png";
   static const playButtonImg = "assets/images/playButton.png";
   static const callDownImg = "assets/images/callDown.png";
+  static const signUpbg = "assets/images/signupbg.png";
 }
 
 class AppIcons {
@@ -24,4 +25,6 @@ class AppIcons {
   static const profileIcon = "assets/icons/profile.png";
   static const checkIcon = "assets/icons/check.png";
   static const videoCameraIcon = "assets/icons/videoCamera.png";
+  static const showPasswordIcon = "assets/icons/eye.png";
+  static const hidePasswordIcon = "assets/icons/hideEye.png";
 }

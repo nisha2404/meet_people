@@ -55,28 +55,32 @@ class _DashboardState extends State<Dashboard> {
               ]),
               Row(
                 children: [
-                  CustomTabSwitch(
-                      width: AppServices.getScreenWidth(context) * 0.35.w,
-                      values: [
-                        Text("Profiles",
-                            style: GetTextTheme.sf14_Bold.copyWith(
-                                color: activeTabIndex == 0
-                                    ? AppColors.primaryColor
-                                    : AppColors.blackColor)),
-                        Text("Live Streams",
-                            style: GetTextTheme.sf14_Bold.copyWith(
-                                color: activeTabIndex != 0
-                                    ? AppColors.primaryColor
-                                    : AppColors.blackColor))
-                      ],
-                      activeStyle: GetTextTheme.sf14_Bold
-                          .copyWith(color: AppColors.whiteColor),
-                      inActiveStyle: GetTextTheme.sf14_Bold,
-                      activeIndex: activeTabIndex,
-                      onValueChange: (value) =>
-                          setState(() => activeTabIndex = value)),
+                  Flexible(
+                    flex: 2,
+                    child: CustomTabSwitch(
+                        width: AppServices.getScreenWidth(context) * 0.3.w,
+                        values: [
+                          Text("Profiles",
+                              style: GetTextTheme.sf14_Bold.copyWith(
+                                  color: activeTabIndex == 0
+                                      ? AppColors.primaryColor
+                                      : AppColors.blackColor)),
+                          Text("Live Streams",
+                              style: GetTextTheme.sf14_Bold.copyWith(
+                                  color: activeTabIndex != 0
+                                      ? AppColors.primaryColor
+                                      : AppColors.blackColor))
+                        ],
+                        activeStyle: GetTextTheme.sf14_Bold
+                            .copyWith(color: AppColors.whiteColor),
+                        inActiveStyle: GetTextTheme.sf14_Bold,
+                        activeIndex: activeTabIndex,
+                        onValueChange: (value) =>
+                            setState(() => activeTabIndex = value)),
+                  ),
                   AppServices.addWidth(5.w),
-                  Expanded(
+                  Flexible(
+                    flex: 1,
                     child: InkWell(
                       onTap: () {
                         showModalBottomSheet(

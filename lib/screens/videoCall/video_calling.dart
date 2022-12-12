@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:meet_people/screens/videoCall/calling.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../components/expanded_btn.dart';
@@ -15,8 +16,8 @@ import '../Dashboard/LiveStreamingVideo/stickersBottomsheet.dart';
 
 const appId = "1e2947da7f094b72b5d9532a37085078";
 const token =
-    "007eJxTYPjnMatM4FbEn99vF9n8+/xi+wMJ9UUzu+t1njRVTt+wrqxfgcEw1cjSxDwl0TzNwNIkydwoyTTF0tTYKNHY3MDC1MDcQqV1QnJDICNDzk8hZkYGCATxuRlyU1NLdAtS8wtyUhkYAF5yJMU=";
-const channel = "meet-people";
+    "007eJxTYPh12nrHsQVPzc33XPLyZFwZO1dc/falqvf/8nnU36hGGugoMBimGlmamKckmqcZWJokmRslmaZYmhobJRqbG1iYGphbsG+amNwQyMjQvuoSCyMDBIL4LAwlqcUlDAwAaJIfXA==";
+const channel = "test";
 
 class VideoCallingScreen extends StatefulWidget {
   const VideoCallingScreen({Key? key}) : super(key: key);
@@ -26,9 +27,21 @@ class VideoCallingScreen extends StatefulWidget {
 }
 
 class _VideoCallingScreenState extends State<VideoCallingScreen> {
+  // static final _users = <int>[];
+  // final _infoStrings = <String>[];
+  bool muted = false;
   int? _remoteUid;
   bool _localUserJoined = false;
   late RtcEngine _engine;
+
+  @override
+  void dispose() {
+    // _users.clear();
+    _engine.leaveChannel();
+    _engine.destroyCustomVideoTrack(_remoteUid!);
+
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -37,6 +50,15 @@ class _VideoCallingScreenState extends State<VideoCallingScreen> {
   }
 
   Future<void> initAgora() async {
+    // if (appId.isEmpty) {
+    //   setState(() {
+    //     _infoStrings.add(
+    //         "App id is missing, please provide your app id in settings.dart");
+    //     _infoStrings.add("Agora engine is not starting");
+    //   });
+    //   return;
+    // }
+
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
 
@@ -44,7 +66,7 @@ class _VideoCallingScreenState extends State<VideoCallingScreen> {
     _engine = createAgoraRtcEngine();
     await _engine.initialize(const RtcEngineContext(
       appId: appId,
-      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+      channelProfile: ChannelProfileType.channelProfileCommunication,
     ));
 
     _engine.registerEventHandler(
@@ -74,6 +96,7 @@ class _VideoCallingScreenState extends State<VideoCallingScreen> {
 
     await _engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
+    await _engine.enableAudio();
     await _engine.startPreview();
 
     await _engine.joinChannel(
